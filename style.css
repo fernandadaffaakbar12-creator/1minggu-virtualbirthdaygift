@@ -658,6 +658,32 @@ body {
     opacity: 1;
 }
 
+/* Desain teks pesan ekstra dengan efek kaca */
+.glass-message {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-top: 15px;
+    max-width: 90vw;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition-delay: 0.3s;
+}
+
+#image-modal.show-modal .glass-message.show-message {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 /* Penyesuaian mobile untuk karousel 3D sudah digabung ke media query utama di bawah */
 
 /* =========================================
@@ -761,7 +787,7 @@ body {
     position: relative;
     flex: 0 0 auto;
     width: 220px;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 3 / 4;
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5) !important;

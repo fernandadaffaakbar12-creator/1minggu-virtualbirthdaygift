@@ -175,7 +175,7 @@
         const pinPopupClose = document.getElementById('pin-popup-close');
 
         // DEFAULT PIN: Silakan ubah angka ini jika ingin PIN lain
-        const SECRET_PIN = "1104";
+        const SECRET_PIN = "0205";
 
         let pinAttempt = 0;
         let popupTimeout = null;
@@ -377,6 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalImg = document.getElementById('modal-img');
     const modalIframe = document.getElementById('modal-iframe'); // Panggil elemen iframe
     const modalCaption = document.getElementById('modal-caption');
+    const modalMessage = document.getElementById('modal-message');
 
     if (daftarFoto.length > 0 && modal && modalImg) {
         daftarFoto.forEach(foto => {
@@ -384,6 +385,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Reset layar setiap kali diklik
                 if (modalCaption) modalCaption.innerText = "";
+                if (modalMessage) {
+                    modalMessage.innerText = "";
+                    modalMessage.style.display = 'none';
+                    modalMessage.classList.remove('show-message');
+                }
                 modalImg.style.display = 'block'; // Tampilkan foto sebagai default
                 modalIframe.style.display = 'none'; // Sembunyikan musik sebagai default
                 modalIframe.src = ""; // Kosongkan lagu sebelumnya
@@ -429,7 +435,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 // D. JIKA YANG DIKLIK ADALAH GALERI CINTA
                 else {
                     modalImg.src = this.src;
-                    modalImg.style.aspectRatio = "9 / 16";
+                    modalImg.style.aspectRatio = "3 / 4";
+                }
+
+                const customMessage = this.getAttribute('data-message');
+                if (customMessage && modalMessage) {
+                    modalMessage.innerText = customMessage;
+                    modalMessage.style.display = 'block';
+                    setTimeout(() => {
+                        modalMessage.classList.add('show-message');
+                    }, 50);
                 }
 
                 modal.classList.add('show-modal');
@@ -768,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             canvas.width = 220;
-            canvas.height = Math.round(220 * 16 / 9);
+            canvas.height = Math.round(220 * 4 / 3);
 
             ctx.fillStyle = '#0a0a0a';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
